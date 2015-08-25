@@ -1,0 +1,54 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageAccountName": {
+      "value": "saGeometricSearchName"
+    },
+    "adminUsername": {
+      "value": ""
+    },
+    "adminPassword": {
+      "value": ""
+    },
+    "location": {
+      "value": "East US 2"
+    },	
+    "virtualNetworkName": {
+      "value": "geometricSearchServiceVnet"
+    },
+    "subnetName": {
+      "value": "RedisSubnet"
+    },
+    "addressPrefix": {
+      "value": "10.0.0.0/16"
+    },
+    "subnetPrefix": {
+      "value": "10.0.0.0/24"
+    },
+    "nodeAddressPrefix": {
+      "value": "10.0.0.1"
+    },
+    "redisVersion": {
+      "value": "3.0.0"
+    },
+	"vmSizeMember": {
+	  "value": "Standard_A4"
+	},
+	"NumberOfMasters": {
+	  "value": 1
+	},
+	"NumberOfSlaves": {
+	  "value": 0
+	},
+	"TotalNumberOfNodes":	{
+	  "value" : 1
+	},
+	"redisAvailabilitySet": {
+	  "value": "asRedisCache",  
+	},
+	"RedisInstancesNumber":{
+	  "value":4,
+	}
+  }
+}

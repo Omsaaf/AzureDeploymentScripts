@@ -1,0 +1,27 @@
+cd /etc/redis
+sudo cp redis.conf redis-two.conf
+sudo sed -i 's,pidfile /var/run/redis.pid,pidfile /var/run/redis-two.pid,' redis-two.conf
+sudo sed -i 's,port 6379,port 6380,' redis-two.conf
+sudo sed -i 's,logfile /var/log/redis/redis-server.log,logfile /var/log/redis/redis-server-two.log,' redis-two.conf
+sudo sed -i 's,dir /var/lib/redis/,dir /var/lib/redis-two/,' redis-two.conf
+sudo sed -i 's,dbfilename /var/lib/redis/dump.rdb,dbfilename /var/lib/redis-two/dump.rdb,' redis-two.conf
+sudo sed -i 's,appendfilename /var/lib/redis/appendonly.aof,appendfilename /var/lib/redis-two/appendonly.aof,' redis-two.conf
+sudo mkdir /var/lib/redis-two
+sudo chown -R redis:redis /var/lib/redis-two
+cd /etc/init.d
+sudo cp redis-server redis-server-two
+sudo sed -i 's,DAEMON_ARGS=/etc/redis/redis.conf,DAEMON_ARGS=/etc/redis/redis-two.conf,' redis-server-two
+sudo sed -i 's,NAME=redis-server,NAME=redis-server-two,' redis-server-two
+sudo sed -i 's,DESC=redis-server,DESC=redis-server-two,' redis-server-two
+sudo sed -i 's,PIDFILE=/var/run/redis.pid,PIDFILE=/var/run/redis-two.pid,' redis-server-two
+sudo update-rc.d redis-server-two defaults
+sudo /etc/init.d/redis-server-two start
+sudo ufw allow 6380
+sudo iptables-save
+
+
+
+
+
+
+echo mypassword | sudo -S command
